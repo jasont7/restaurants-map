@@ -15,9 +15,7 @@
   <body>
     <div id="map"></div>
     <script>
-
-        var map;
-
+      
       function initMap() {
         var victoria = {lat: 48.4284, lng: -123.3656};
         map = new google.maps.Map(document.getElementById('map'), {
