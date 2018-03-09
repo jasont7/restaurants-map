@@ -23,6 +23,8 @@ function initMap() {
                 var id = markerElem.getAttribute('id');
                 var name = markerElem.getAttribute('name');
                 var address = markerElem.getAttribute('address');
+                var reviews = markerElem.getAttribute('reviews');
+                var rating = markerElem.getAttribute('rating');
                 var point ={lat: parseFloat(markerElem.getAttribute('lat')),
                             lng: parseFloat(markerElem.getAttribute('lng'))};
     
@@ -31,13 +33,21 @@ function initMap() {
 
                 var title = document.createElement('strong'); // name
                 title.textContent = name;
-                var text = document.createElement('text'); // address
-                text.textContent = address;
+                var text1 = document.createElement('text'); // address
+                text1.textContent = address;
+                var text2 = document.createElement('text'); // address
+                text2.textContent = reviews + " reviews";
+                var text3 = document.createElement('text'); // address
+                text3.textContent = rating + " stars";
 
                 // appending the text to the info-box
                 markerInfo.appendChild(title);
                 markerInfo.appendChild(document.createElement('br'));
-                markerInfo.appendChild(text);
+                markerInfo.appendChild(text1);
+                markerInfo.appendChild(document.createElement('br'));
+                markerInfo.appendChild(text2);
+                markerInfo.appendChild(document.createElement('br'));
+                markerInfo.appendChild(text3);
     
                 // create the marker on its according position
                 var marker = new google.maps.Marker({

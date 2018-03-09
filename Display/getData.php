@@ -46,6 +46,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo 'id="' . $row['id'] . '" ';
     echo 'name="' . parseToXML(utf8_encode($row['name'])) . '" ';
     echo 'address="' . parseToXML($row['address']) . '" ';
+    echo 'reviews="' . parseToXML($row['reviews']) . '" ';
+    echo 'rating="' . parseToXML($row['rating']) . '" ';
     echo 'lat="' . $row['latitude'] . '" ';
     echo 'lng="' . $row['longitude'] . '" ';
     echo '/>';
