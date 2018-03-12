@@ -9,32 +9,38 @@ function initMap() {
         zoom: 14,
         disableDefaultUI: true
     });
+
+    // Displays all of the markers when page loads, no category filter
     getXMLData('getData.php?cat=""', map);
 
     var filtersPanel = document.getElementById('filtersPanel');
-
     var textField1 = document.getElementById('userInput');
+
+    // Displays the markers according the value the user is typing (cat)
     function useValue() {
         clearMarkers();
 
         var cat = encodeURIComponent('"'+textField1.value+'"');
         getXMLData('getData.php?cat='+cat, map);
     }
-    textField1.oninput = useValue;
+    textField1.oninput = useValue; //updates every time the user types
 
+    // Displays the filters panel in the top-left of the screen
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(filtersPanel);
 }
 
 function clearMarkers() {
-    for (var i = 0; i < markersArray.length; i++ ) {
-      markersArray[i].setMap(null);
+    // Clears the markers from the map and array
+    
+    for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(null);
     }
     markersArray = [];
 }
 
 function getXMLData(url, map) {
-    // Using AJAX to get the XML data from the 'getData.php' file and use it
-    // to display markers with info-boxes:
+    // Using AJAX to get the XML data from the 'getData.php' file and
+    // display markers with info-boxes on the map
 
     var request = new XMLHttpRequest; // the main object to request the XML
 
@@ -81,7 +87,7 @@ function getXMLData(url, map) {
                 markerInfo.appendChild(document.createElement('br'));
                 markerInfo.appendChild(text3);
     
-                // create the marker on its according position
+                // create the marker on its according position and append into array
                 var marker = new google.maps.Marker({
                     map: map,
                     position: point
