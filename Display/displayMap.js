@@ -23,7 +23,7 @@ function initMap() {
         var cat = encodeURIComponent('"'+textField1.value+'"');
         getXMLData('getData.php?cat='+cat, map);
     }
-    textField1.oninput = useValue; //updates every time the user types
+    textField1.oninput = useValue;
 
     // Displays the filters panel in the top-left of the screen
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(filtersPanel);
@@ -39,10 +39,10 @@ function clearMarkers() {
 }
 
 function getXMLData(url, map) {
-    // Using AJAX to get the XML data from the 'getData.php' file and
-    // display markers with info-boxes on the map
+    // Using AJAX to get the XML data from the 'getData.php' file and display markers with info-boxes on the map
 
     var request = new XMLHttpRequest; // the main object to request the XML
+    request.open('GET', url); // initialize the request
 
     request.onreadystatechange = function() { // when the request changes state
         if (request.readyState == 4) { // success, we have recieved the XML object from sending the request
@@ -104,6 +104,5 @@ function getXMLData(url, map) {
         }
     };
 
-    request.open('GET', url); // initialize the request
     request.send(); // send the request
 }
