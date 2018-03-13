@@ -34,7 +34,7 @@
         <input type="text" id="userInput"></input>
         <div id="numResults"></div>
     </div>
-    <!–– Generate a unique ID every time script loads to prevent caching ––>
+    <!-- Generate a unique ID every time script loads to prevent caching -->
     <script src="displayMap.js?random=<?php echo uniqid(); ?>"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtizU5211x11kL5k1LBvXbpZwNn99u0pc&callback=initMap"></script>
 </body>
