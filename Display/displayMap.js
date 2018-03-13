@@ -50,6 +50,11 @@ function getXMLData(url, map) {
             // using the info from the XML
             var xml = request.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
+            var numMarkers = markers.length;
+
+            // shows number of results/markers
+            document.getElementById("numResults").innerHTML = numMarkers + " results";
+            
             Array.prototype.forEach.call(markers, function(markerElem) { // looping through each element
 
                 var id = markerElem.getAttribute('id');
@@ -105,4 +110,5 @@ function getXMLData(url, map) {
     };
 
     request.send(); // send the request
+
 }

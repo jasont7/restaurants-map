@@ -78,6 +78,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 // Last XML marker
 echo 'cat="' . parseToXML(utf8_encode($cat_str)) . '" ';
 echo '/>';
+
+// End XML file
 echo '</markers>';
 
 ?>
