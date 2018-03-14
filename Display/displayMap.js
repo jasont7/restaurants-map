@@ -1,5 +1,6 @@
 var map;
 var markersArray = [];
+var categories = [];
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
@@ -20,14 +21,22 @@ function initMap() {
     function useValue() {
         clearMarkers();
 
-        var cat = encodeURIComponent('"'+textField1.value+'"');
+        var textFieldVal = '"'+textField1.value+'"';
+
+        var cat = encodeURIComponent(textFieldVal);
         getXMLData('getData.php?cat='+cat, map);
+
+        getCategories('getCategories.php');
+        $(function() { 
+            $(".autocomplete").autocomplete({source: categories});
+        });
     }
     textField1.oninput = useValue;
 
     // Displays the filters panel in the top-left of the screen
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(filtersPanel);
 }
+
 
 function clearMarkers() {
     // Clears the markers from the map and array
@@ -38,11 +47,11 @@ function clearMarkers() {
     markersArray = [];
 }
 
+
 function getXMLData(url, map) {
     // Using AJAX to get the XML data from the 'getData.php' file and display markers with info-boxes on the map
 
     var request = new XMLHttpRequest; // the main object to request the XML
-    request.open('GET', url); // initialize the request
 
     request.onreadystatechange = function() { // when the request changes state
         if (request.readyState == 4) { // success, we have recieved the XML object from sending the request
@@ -108,7 +117,31 @@ function getXMLData(url, map) {
             });
         }
     };
-
+    request.open('GET', url); // initialize the request
     request.send(); // send the request
+
+}
+
+function getCategories(url) {
+    // Using AJAX to get the XML data from the 'getCategories.php' file to make the autocomplete search feature
+    // (very similar to the getXMLData function)
+
+    var request = new XMLHttpRequest;
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+
+            // using the info from the XML
+            var xml = request.responseXML;
+            var xmlCats = xml.documentElement.getElementsByTagName('category');
+
+            for (i=0; i < xmlCats.length; i++) {
+                var cat = xmlCats[i].getAttribute('cat');
+                categories.push(cat);
+            }
+        }
+    }
+    request.open('GET', url);
+    request.send();
 
 }

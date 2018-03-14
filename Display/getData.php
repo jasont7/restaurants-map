@@ -3,31 +3,16 @@
 header("Content-type: text/xml");
 echo "<?xml version='1.0' ?>";
 
-$servername="localhost";
-$username="root";
-$password="";
-$conn = mysqli_connect($servername, $username, $password);
-$cat = $_GET['cat'];
-
-function parseToXML($htmlStr) {
-    $xmlStr=str_replace('<','&lt;',$htmlStr);
-    $xmlStr=str_replace('>','&gt;',$xmlStr);
-    $xmlStr=str_replace('"','&quot;',$xmlStr);
-    $xmlStr=str_replace("'",'&#39;',$xmlStr);
-    $xmlStr=str_replace("&",'&amp;',$xmlStr);
-    return $xmlStr;
-}
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require 'connect.php';
 
 // Select DB
 $db = mysqli_select_db($conn, "webapp1");
 if (!$db) {
     die ('Can\'t use db : ' . mysql_error());
 }
+
+
+$cat = $_GET['cat'];
 
 // Select all the rows in the restaurants table
 $query = "SELECT * 
@@ -39,6 +24,14 @@ if (!$result) {
 }
 
 
+function parseToXML($htmlStr) {
+    $xmlStr=str_replace('<','&lt;',$htmlStr);
+    $xmlStr=str_replace('>','&gt;',$xmlStr);
+    $xmlStr=str_replace('"','&quot;',$xmlStr);
+    $xmlStr=str_replace("'",'&#39;',$xmlStr);
+    $xmlStr=str_replace("&",'&amp;',$xmlStr);
+    return $xmlStr;
+}
 
 // Start XML file, echo parent node
 echo '<markers>';
