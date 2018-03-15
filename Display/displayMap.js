@@ -14,6 +14,9 @@ function initMap() {
     // Displays all of the markers when page loads, no category filter
     getXMLData('getData.php?cat=""', map);
 
+    // Get all of the categories and put them into an array
+    getCategories('getCategories.php');
+
     var filtersPanel = document.getElementById('filtersPanel');
     var textField1 = document.getElementById('userInput');
 
@@ -25,13 +28,19 @@ function initMap() {
 
         var cat = encodeURIComponent(textFieldVal);
         getXMLData('getData.php?cat='+cat, map);
-
-        getCategories('getCategories.php');
-        $(function() { 
-            $(".autocomplete").autocomplete({source: categories});
-        });
     }
+
+    // Text box event handlers
     textField1.oninput = useValue;
+    textField1.onchange = useValue;
+    textField1.addEventListener("awesomplete-selectcomplete", useValue);
+
+    var autocomplete = new Awesomplete(textField1, {
+        list: categories,
+        filter: Awesomplete.FILTER_STARTSWITH,
+        minChars: 1,
+        autoFirst: true
+    });
 
     // Displays the filters panel in the top-left of the screen
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(filtersPanel);
@@ -137,6 +146,7 @@ function getCategories(url) {
 
             for (i=0; i < xmlCats.length; i++) {
                 var cat = xmlCats[i].getAttribute('cat');
+                console.log(cat);
                 categories.push(cat);
             }
         }
