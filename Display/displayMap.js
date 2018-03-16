@@ -115,6 +115,16 @@ function getXMLData(url, map) {
                     map: map,
                     position: point
                 });
+                
+                // change the opacity of the markers according to rating
+                if (rating >= 4) {
+					marker.setOpacity(1.0);
+				} else if (rating >= 2.5 && rating < 4) {
+					marker.setOpacity(0.8);
+				} else if (rating < 2.5) {
+					marker.setOpacity(0.6);
+				}
+                
                 markersArray.push(marker);
 
                 // set the info-box to the marker on click
