@@ -12,4 +12,4 @@
 
 #### [AJAX Intro](https://www.w3schools.com/xml/ajax_intro.asp)
 
-#### [Awesomeplete Textbox Autocomplete](https://leaverou.github.io/awesomplete)
+#### [Awesomplete Textbox Autocomplete](https://leaverou.github.io/awesomplete)
