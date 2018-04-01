@@ -2,6 +2,9 @@
 
 - Getting the users geolocation
 
+- Change the look of the current filters panel to be shorter 
+  to finish the first version of the app.
+
 - Making the default radius to contain closest to 50 markers
 
 - Make the city a filter, get from input or closest city to user location.
