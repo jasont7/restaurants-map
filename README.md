@@ -6,7 +6,11 @@
 
 #### [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start)
 
-#### [Yelp Data Web Page](https://www.yelp.ca/search?find_desc=Restaurants&find_loc=Victoria,+BC&start=0&l=g:-123.28857421875,48.46608091026394,-123.39157104492188,48.39774153971361)
+#### [Web Scraping with Python](https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe)
+
+#### [Yelp Data Victoria](https://www.yelp.ca/search?find_desc=Restaurants&find_loc=Victoria,+British+Columbia&l=g:-123.26282501220703,48.5020360318228,-123.46881866455078,48.365362186063244)
+
+#### [Yelp Fusion API](https://www.yelp.ca/developers/documentation/v3)
 
 #### [Python Connect to MySQL](https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html)
 
