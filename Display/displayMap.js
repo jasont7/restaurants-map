@@ -1,14 +1,97 @@
 var map;
 var markersArray = [];
 var categories = [];
+var cat = '"' + '"';
+var radius = 1000;
+var defaultZoom = 15;
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
-    victoria = {lat: 48.428421, lng: -123.365644};
+    loc = new google.maps.LatLng(48.428421, -123.365644);
     map = new google.maps.Map(document.getElementById('map'), {
-        center: victoria,
-        zoom: 14,
-        disableDefaultUI: true
+        center: loc,
+        zoom: defaultZoom,
+        disableDefaultUI: true,
+        styles: [
+            {
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#444444"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 45
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#6ec0fa"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ]
     });
 
     // Displays all of the markers when page loads, no category filter
@@ -19,21 +102,70 @@ function initMap() {
 
     var filtersPanel = document.getElementById('filtersPanel');
     var textField1 = document.getElementById('userInput');
+    var slider = document.getElementById("distRange");
+    var rangeSize = document.getElementById("rangeSize");
 
     // Displays the markers according the value the user is typing (cat)
     function useValue() {
         clearMarkers();
 
-        var textFieldVal = '"'+textField1.value+'"';
+        cat = '"'+textField1.value+'"';
 
-        var cat = encodeURIComponent(textFieldVal);
         getXMLData('getData.php?cat='+cat, map);
     }
 
-    // Text box event handlers
+    // Event handlers
     textField1.oninput = useValue;
-    textField1.onchange = useValue;
     textField1.addEventListener("awesomplete-selectcomplete", useValue);
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        latitude = event.latLng.lat();
+        longitude =  event.latLng.lng();
+        newCenter = new google.maps.LatLng(latitude, longitude);
+
+        map.setCenter(newCenter);
+        loc = newCenter;
+
+        clearMarkers();
+        console.log(cat);
+        getXMLData('getData.php?cat='+cat, map);
+    });
+
+    slider.oninput = function() {
+        if (parseInt(this.value) == 1) {
+            rangeSize.innerHTML = "100m";
+            radius = 100;
+            map.setZoom(defaultZoom+3);
+        } else if (parseInt(this.value) == 2) {
+            rangeSize.innerHTML = "250m";
+            radius = 250;
+            map.setZoom(defaultZoom+2);
+        } else if (parseInt(this.value) == 3) {
+            rangeSize.innerHTML = "500m";
+            radius = 500;
+            map.setZoom(defaultZoom+1);
+        } else if (parseInt(this.value) == 4) {
+            rangeSize.innerHTML = "1km";
+            radius = 1000;
+            map.setZoom(defaultZoom);
+        } else if (parseInt(this.value) == 5) {
+            rangeSize.innerHTML = "2km";
+            radius = 2000;
+            map.setZoom(defaultZoom-1);
+        } else if (parseInt(this.value) == 6) {
+            rangeSize.innerHTML = "5km";
+            radius = 5000;
+            map.setZoom(defaultZoom-2);
+        } else if (parseInt(this.value) == 7) {
+            rangeSize.innerHTML = "10km";
+            radius = 10000;
+            map.setZoom(defaultZoom-3);
+        }
+
+        clearMarkers();
+        getXMLData('getData.php?cat='+cat, map);
+    }
+
 
     var autocomplete = new Awesomplete(textField1, {
         list: categories,
@@ -48,8 +180,7 @@ function initMap() {
 
 
 function clearMarkers() {
-    // Clears the markers from the map and array
-    
+
     for (var i = 0; i < markersArray.length; i++) {
         markersArray[i].setMap(null);
     }
@@ -68,10 +199,6 @@ function getXMLData(url, map) {
             // using the info from the XML
             var xml = request.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
-            var numMarkers = markers.length;
-
-            // shows number of results/markers
-            document.getElementById("numResults").innerHTML = numMarkers + " results";
             
             Array.prototype.forEach.call(markers, function(markerElem) { // looping through each element
 
@@ -82,57 +209,77 @@ function getXMLData(url, map) {
                 var reviews = markerElem.getAttribute('reviews');
                 var rating = markerElem.getAttribute('rating');
 
-                var point ={lat: parseFloat(markerElem.getAttribute('lat')),
-                            lng: parseFloat(markerElem.getAttribute('lng'))};
+                var coord = new google.maps.LatLng(
+                    parseFloat(markerElem.getAttribute('lat')),
+                    parseFloat(markerElem.getAttribute('lng'))
+                );
+                var distanceToCenter = google.maps.geometry.spherical.computeDistanceBetween(coord, map.getCenter());
     
-                // creating info-box
-                var markerInfo = document.createElement('div');
+                if (distanceToCenter <= radius) {
 
-                var title = document.createElement('strong'); // name
-                title.textContent = name;
-                var text0 = document.createElement('text'); // categories
-                text0.textContent = cat;
-                var text1 = document.createElement('text'); // address
-                text1.textContent = address;
-                var text2 = document.createElement('text'); // reviews
-                text2.textContent = reviews + " reviews";
-                var text3 = document.createElement('text'); // rating
-                text3.textContent = rating + " stars";
+                    // create the marker on its according position if it is within radius
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: coord,
+                        icon: {
+                            url: 'markericon.png',
+                            scaledSize: new google.maps.Size(20, 20)
+                        },
+                        optimized: false
+                    });
 
-                // appending the text to the info-box
-                markerInfo.appendChild(title);
-                markerInfo.appendChild(document.createElement('br'));
-                markerInfo.appendChild(text0);
-                markerInfo.appendChild(document.createElement('br'));
-                markerInfo.appendChild(text1);
-                markerInfo.appendChild(document.createElement('br'));
-                markerInfo.appendChild(text2);
-                markerInfo.appendChild(document.createElement('br'));
-                markerInfo.appendChild(text3);
-    
-                // create the marker on its according position and append into array
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: point
-                });
+                    // change the opacity of the markers according to rating
+                    if (rating >= 4) {
+                        marker.setOpacity(1.0);
+                    } else if (rating >= 2.5 && rating < 4) {
+                        marker.setOpacity(0.8);
+                    } else if (rating < 2.5) {
+                        marker.setOpacity(0.6);
+                    }
+
+                    // creating info-box
+                    var markerInfo = document.createElement('div');
+
+                    var title = document.createElement('strong'); // name
+                    title.textContent = name;
+                    var text0 = document.createElement('text'); // categories
+                    text0.textContent = cat;
+                    var text1 = document.createElement('text'); // address
+                    text1.textContent = address;
+                    var text2 = document.createElement('text'); // reviews
+                    text2.textContent = reviews + " reviews";
+                    var text3 = document.createElement('text'); // rating
+                    text3.textContent = rating + " stars";
+
+                    // appending the text to the info-box
+                    markerInfo.appendChild(title);
+                    markerInfo.appendChild(document.createElement('br'));
+                    markerInfo.appendChild(text0);
+                    markerInfo.appendChild(document.createElement('br'));
+                    markerInfo.appendChild(text1);
+                    markerInfo.appendChild(document.createElement('br'));
+                    markerInfo.appendChild(text2);
+                    markerInfo.appendChild(document.createElement('br'));
+                    markerInfo.appendChild(text3);
+
+                    // showing and hiding the info window
+                    infoWindow = new google.maps.InfoWindow;
+                    marker.addListener('click', function() {
+                        infoWindow.setContent(markerInfo);
+                        infoWindow.open(map, marker);
+                    });
+                    marker.addListener('mouseover', function() {
+                        infoWindow.setContent(markerInfo);
+                        infoWindow.open(map, marker);
+                    });
+
+                    markersArray.push(marker);
+                }
+
+                // shows number of results/markers
+                var numMarkers = markersArray.length;
+                document.getElementById("numResults").innerHTML = numMarkers + " results";
                 
-                // change the opacity of the markers according to rating
-                if (rating >= 4) {
-		    marker.setOpacity(1.0);
-		} else if (rating >= 2.5 && rating < 4) {
-		    marker.setOpacity(0.8);
-		} else if (rating < 2.5) {
-		    marker.setOpacity(0.6);
-		}
-                
-                markersArray.push(marker);
-
-                // set the info-box to the marker on click
-                infoWindow = new google.maps.InfoWindow;
-                marker.addListener('click', function() {
-                    infoWindow.setContent(markerInfo);
-                    infoWindow.open(map, marker);
-                });
             });
         }
     };
@@ -156,7 +303,6 @@ function getCategories(url) {
 
             for (i=0; i < xmlCats.length; i++) {
                 var cat = xmlCats[i].getAttribute('cat');
-                console.log(cat);
                 categories.push(cat);
             }
         }

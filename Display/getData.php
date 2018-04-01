@@ -1,6 +1,6 @@
 <?php
 
-header("Content-type: text/xml");
+header("Content-type: text/xml; charset=iso-8859-1");
 echo "<?xml version='1.0' ?>";
 
 require 'connect.php';
@@ -15,7 +15,7 @@ if (!$db) {
 $cat = $_GET['cat'];
 
 // Select all the rows in the restaurants table
-$query = "SELECT * 
+$query = "SELECT DISTINCT restaurants.*, c2.cat 
           FROM restaurants JOIN categories c1 USING(id) JOIN categories c2 USING(id) 
           WHERE c1.cat LIKE '%'$cat'%'";
 $result = mysqli_query($conn, $query);
@@ -37,33 +37,32 @@ function parseToXML($htmlStr) {
 echo '<markers>';
 
 // Iterate through the rows, printing XML nodes for each
-$id_prev = -1;
+$prev_id = -1;
 $cat_str = "";
 
+// Creating each XML node
 while ($row = mysqli_fetch_assoc($result)) {
-    // Creating each XML node
     $id = $row['id'];
-    if ($id != $id_prev) {
+    $new_cat = $row['cat'];
 
-        if ($id_prev != -1) {
+    if ($id != $prev_id) {
+
+        if ($prev_id != -1) {
             echo 'cat="' . parseToXML(utf8_encode($cat_str)) . '" ';
             echo '/>';
         }
-
         echo '<marker ';
         echo 'id="' . $row['id'] . '" ';
-        echo 'name="' . parseToXML(utf8_encode($row['name'])) . '" ';
+        echo 'name="' . parseToXML($row['name']) . '" ';
         echo 'address="' . parseToXML($row['address']) . '" ';
         echo 'reviews="' . parseToXML($row['reviews']) . '" ';
         echo 'rating="' . parseToXML($row['rating']) . '" ';
         echo 'lat="' . $row['latitude'] . '" ';
         echo 'lng="' . $row['longitude'] . '" ';
-        $new_cat = $row['cat'];
         $cat_str = "$new_cat";
-        $id_prev = $id;
+        $prev_id = $id;
     }
     else {
-        $new_cat = $row['cat'];
         $cat_str = "$cat_str, $new_cat";
     }
 }
