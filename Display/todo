@@ -17,7 +17,7 @@
 
 - Add a 'more info' link taking user to the yelp page of the restraunt (Python Scraping)
 
-- Create different filters for finding restaurants (SQL)
+- Create different filters for finding restaurants (SQL queries)
 
 - Change the look of filters panel. Default to be just two search bars
   for category and city next to eachother, the slider for the radius size,
@@ -26,8 +26,3 @@
 - Add more styles / animations / UX
 
 - Make a sidebar showing info for each restraunt that's on the map
-
-
-BUG FIXES:
-
-- 
