@@ -12,6 +12,8 @@
 
 - Change color of markers depending on their reviews and rating
 
+- Put markers into clusters if too many in an area
+
 - More restaurant filters for the filters panel
 
 - Add yelp star image instead of text for rating
