@@ -1,4 +1,4 @@
-- Put a marker on the map center (user location)
+- Put a dot on the map center (user location)
 
 - Getting the users geolocation
 
@@ -6,6 +6,8 @@
   to finish the first version of the app.
 
 - Making the default radius to contain closest to 50 markers
+
+- Scrape other cities data with python
 
 - Make the city a filter, get from input or closest city to user location.
   Have 2 tables for each city, restaurants and categories. (Python Scraping)
