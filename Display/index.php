@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <div id="map"></div>
@@ -15,6 +15,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js" async></script>
     <script src="displayMap.js?random=<?php echo uniqid(); ?>"></script>
+    <script src="styles/mapStyle.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCtizU5211x11kL5k1LBvXbpZwNn99u0pc&callback=initMap" async defer></script>
 </body>
 </html>

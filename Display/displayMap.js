@@ -12,86 +12,7 @@ function initMap() {
         center: loc,
         zoom: defaultZoom,
         disableDefaultUI: true,
-        styles: [
-            {
-                "featureType": "administrative",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#444444"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#f2f2f2"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 45
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "labels.icon",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#6ec0fa"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            }
-        ]
+        styles: mapStyle
     });
 
     // Displays all of the markers when page loads, no category filter
@@ -222,7 +143,7 @@ function getXMLData(url, map) {
                         map: map,
                         position: coord,
                         icon: {
-                            url: 'markericon.png',
+                            url: 'images/markericon.png',
                             scaledSize: new google.maps.Size(20, 20)
                         },
                         optimized: false

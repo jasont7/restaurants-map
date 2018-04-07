@@ -1,0 +1,27 @@
+#map {
+    height: 100%;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#filtersPanel {
+    height: 350px;
+    width: 175px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 100px;
+    text-align: center;
+    box-shadow: 0 0 30px 5px #999;
+}
+#userInput {
+    display: block;
+    margin: 0 auto;
+}
+#numResults {
+    padding: 10px;
+}
+#distRange {
+    padding: 10px;
+}
