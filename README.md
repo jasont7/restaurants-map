@@ -1,10 +1,10 @@
 ## Links:
 
-#### [Google Maps Services Python](https://github.com/googlemaps/google-maps-services-python)
-
 #### [Google Maps JavaScript API - Guides](https://developers.google.com/maps/documentation/javascript/tutorial?authuser=1)
 
 #### [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start)
+
+#### [Google Maps Services Python](https://github.com/googlemaps/google-maps-services-python)
 
 #### [Web Scraping with Python](https://medium.freecodecamp.org/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe)
 
