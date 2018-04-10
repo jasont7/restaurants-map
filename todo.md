@@ -2,6 +2,8 @@
 
 - Getting the users geolocation
 
+- Zoom into marker when clicked
+
 - Change the look of the current filters panel to be shorter 
   to finish the first version of the app.
 
