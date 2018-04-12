@@ -12,7 +12,7 @@
 - Scrape other cities data with python
 
 - Make the city a filter, get from input or closest city to user location.
-  Have 2 tables for each city, restaurants and categories. (Python Scraping)
+  Have 2 tables for each city, restaurants and categories.
 
 - Change color of markers depending on their reviews and rating
 
