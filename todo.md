@@ -32,7 +32,7 @@
   for category and city next to eachother, the slider for the radius size,
   and a 'more' button to display filters + info
 
-- Add more styles / animations / UX
+- Add more styles / UX
 
 - Make a sidebar showing info for each restraunt that's on the map
 
