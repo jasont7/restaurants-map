@@ -5,18 +5,18 @@ var cat = '"' + '"';
 var radius = 1000;
 var defaultZoom = 15;
 
-//Start of new code	--> Attempting to get users lon. & lat., still figuring out scoping issues. 
 document.addEventListener("DOMContentLoaded", function() {
-  if ("geolocation" in navigator) {
-	navigator.geolocation.getCurrentPosition(function(position) {
-      var userLon = position.coords.longitude;
-      var userLat = position.coords.latitude;
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(location) {
+            userLoc = new google.maps.LatLng(
+                location.coords.latitude, 
+                location.coords.longitude
+            );
+        });
+    } else {
+        console.log("Location services not available");
+    }
 });
-	} else {
-	console.log("Location services not available");
-	}
-});
-//End of new code 
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
@@ -26,6 +26,15 @@ function initMap() {
         zoom: defaultZoom,
         disableDefaultUI: true,
         styles: mapStyle
+    });
+
+    //new
+    navigator.geolocation.getCurrentPosition(function(location) {
+        userLoc = new google.maps.LatLng(
+            location.coords.latitude, 
+            location.coords.longitude
+        );
+        map.setCenter(userLoc);
     });
 
     // Displays all of the markers when page loads, no category filter
