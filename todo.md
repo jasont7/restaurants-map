@@ -1,6 +1,8 @@
 - Put a dot on the map center (user location)
 
-- Getting the users geolocation
+- Make a landing page for the site, only containing a header and a
+  drop-down box to select the city instead of getting the users
+  location
 
 - Zoom into marker when clicked
 
