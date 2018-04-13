@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(location) {
             userLoc = new google.maps.LatLng(
-                location.coords.latitude, 
-                location.coords.longitude
+                location.coords.latitude, location.coords.longitude
             );
         });
     } else {
