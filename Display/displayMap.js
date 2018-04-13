@@ -5,6 +5,19 @@ var cat = '"' + '"';
 var radius = 1000;
 var defaultZoom = 15;
 
+//Start of new code	--> Attempting to get users lon. & lat., still figuring out scoping issues. 
+document.addEventListener("DOMContentLoaded", function() {
+  if ("geolocation" in navigator) {
+	navigator.geolocation.getCurrentPosition(function(position) {
+      var userLon = position.coords.longitude;
+      var userLat = position.coords.latitude;
+});
+	} else {
+	console.log("Location services not available");
+	}
+});
+//End of new code 
+
 function initMap() {
     // Create a map object and specify the Div element to display it on
     loc = new google.maps.LatLng(48.428421, -123.365644);
