@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(location) {
             userLoc = new google.maps.LatLng(
-                location.coords.latitude, location.coords.longitude
+                location.coords.latitude, 
+                location.coords.longitude
             );
         });
     } else {
@@ -27,27 +28,30 @@ function initMap() {
         styles: mapStyle
     });
 
-    //new
-    navigator.geolocation.getCurrentPosition(function(location) {
-        userLoc = new google.maps.LatLng(
-            location.coords.latitude, 
-            location.coords.longitude
-        );
-        map.setCenter(userLoc);
-    });
-
     // Displays all of the markers when page loads, no category filter
     getXMLData('getData.php?cat=""', map);
 
     // Get all of the categories and put them into an array
     getCategories('getCategories.php');
 
+    // Get user location
+    /*navigator.geolocation.getCurrentPosition(function(location) {
+        userLoc = new google.maps.LatLng(
+            location.coords.latitude, 
+            location.coords.longitude
+        );
+        map.setCenter(userLoc);
+        clearMarkers();
+        getXMLData('getData.php?cat=""', map);
+        getCategories('getCategories.php');
+    });*/
+
     var filtersPanel = document.getElementById('filtersPanel');
     var textField1 = document.getElementById('userInput');
     var slider = document.getElementById("distRange");
     var rangeSize = document.getElementById("rangeSize");
 
-    // Displays the markers according the value the user is typing (cat)
+    // Clears and displays new markers according the value the user is typing (cat)
     function useValue() {
         clearMarkers();
 
@@ -56,10 +60,11 @@ function initMap() {
         getXMLData('getData.php?cat='+cat, map);
     }
 
-    // Event handlers
+    // Category search
     textField1.oninput = useValue;
     textField1.addEventListener("awesomplete-selectcomplete", useValue);
 
+    // On map click
     google.maps.event.addListener(map, 'click', function(event) {
         latitude = event.latLng.lat();
         longitude =  event.latLng.lng();
@@ -73,6 +78,8 @@ function initMap() {
         getXMLData('getData.php?cat='+cat, map);
     });
 
+    // Distance range slider
+    rangeSize.innerHTML = "1km";
     slider.oninput = function() {
         if (parseInt(this.value) == 1) {
             rangeSize.innerHTML = "100m";
@@ -133,7 +140,8 @@ function clearMarkers() {
 function getXMLData(url, map) {
     // Using AJAX to get the XML data from the 'getData.php' file and display markers with info-boxes on the map
 
-    var request = new XMLHttpRequest; // the main object to request the XML
+    var request = new XMLHttpRequest;
+    request.open('GET', url); // initialize the request for the XML
 
     request.onreadystatechange = function() { // when the request changes state
         if (request.readyState == 4) { // success, we have recieved the XML object from sending the request
@@ -225,7 +233,6 @@ function getXMLData(url, map) {
             });
         }
     };
-    request.open('GET', url); // initialize the request
     request.send(); // send the request
 
 }
