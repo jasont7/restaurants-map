@@ -5,6 +5,7 @@ var cat = '"' + '"';
 var radius = 1000;
 var defaultZoom = 15;
 
+//testing
 document.addEventListener("DOMContentLoaded", function() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(location) {
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Location services not available");
     }
 });
+
+
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
@@ -119,8 +122,7 @@ function initMap() {
     var autocomplete = new Awesomplete(textField1, {
         list: categories,
         filter: Awesomplete.FILTER_STARTSWITH,
-        minChars: 1,
-        autoFirst: true
+        minChars: 1
     });
 
     // Displays the filters panel in the top-left of the screen

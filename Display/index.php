@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.css" />
+    <link rel="stylesheet" href="styles/autocomplete.css" />
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
