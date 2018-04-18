@@ -2,6 +2,10 @@ var map;
 var markersArray = [];
 var categories = [];
 var cat = '"' + '"';
+
+var cities = {"victoria": {lat: 48.428421, lng: -123.365644}};
+var city = "victoria";
+
 var radius = 1000;
 var defaultZoom = 15;
 
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
-    loc = new google.maps.LatLng(48.428421, -123.365644);
+    loc = new google.maps.LatLng(cities[city].lat, cities[city].lng);
     map = new google.maps.Map(document.getElementById('map'), {
         center: loc,
         zoom: defaultZoom,
@@ -227,12 +231,11 @@ function getXMLData(url, map) {
 
                     markersArray.push(marker);
                 }
-
-                // shows number of results/markers
-                var numMarkers = markersArray.length;
-                document.getElementById("numResults").innerHTML = numMarkers + " results";
-                
             });
+            
+            // shows number of results/markers
+            var numMarkers = markersArray.length;
+            document.getElementById("numResults").innerHTML = numMarkers + " results";
         }
     };
     request.send(); // send the request
