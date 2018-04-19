@@ -7,23 +7,7 @@ var cities = {"victoria": {lat: 48.428421, lng: -123.365644}};
 var city = "victoria";
 
 var radius = 1000;
-var defaultZoom = 15;
-
-//testing
-document.addEventListener("DOMContentLoaded", function() {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(location) {
-            userLoc = new google.maps.LatLng(
-                location.coords.latitude, 
-                location.coords.longitude
-            );
-        });
-    } else {
-        console.log("Location services not available");
-    }
-});
-
-
+var defaultZoom = 16;
 
 function initMap() {
     // Create a map object and specify the Div element to display it on
