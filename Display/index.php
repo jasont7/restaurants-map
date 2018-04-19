@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>FoodAdvisor Map</title>
     <link rel="stylesheet" href="styles/autocomplete.css" />
     <link rel="stylesheet" href="styles/styles.css">
 </head>
