@@ -21,12 +21,12 @@
 }
 
 body {
-    animation: bgcolor 20s infinite;
+    animation: bgcolor 15s infinite;
     animation-direction: alternate;
 }
 
 #logo {
-	width: 250px;
+	width: 275px;
 	padding: 14px;
 }
 
