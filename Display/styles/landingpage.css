@@ -1,3 +1,10 @@
+/*
+
+Commit all future changes to the testing branch so we don't lose the good copy, 
+once all the code on the testing branch is completely finished, then we push it to the master branch
+
+*/
+
 @keyframes bgcolor {
     0% {
         background-color: #2E86AB
