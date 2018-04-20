@@ -1,4 +1,4 @@
-## Commit all future changes to the testing branch so we don't lose the good copy, once all the code on the testing branch is completely finished, then we push it to the master branch. Btw the new code you added is in the testing branch
+#### Commit all future changes to the testing branch so we don't lose the good copy, once all the code on the testing branch is completely finished, then we push it to the master branch. Btw the new code you added is in the testing branch
 
 ## Links:
 
