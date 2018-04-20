@@ -18,13 +18,5 @@ once all the code on the testing branch is completely finished, then we push it 
     <div id="text">
         <h1>I want... ________</h1> 
     </div>
-    <!--
-    <div id = 'dropdown'>
-        <h2 style ="text-align: center" > Select your city! </h2>
-        <select id = 'citySelector'>
-        <option value = 'victoria'> Victoria BC, Canada </option>
-        <option value = 'tofino'> Tofino BC, Canada </option> 
-    </div>
-    !-->
 </body>
 </html>
