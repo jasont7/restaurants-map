@@ -19,23 +19,21 @@ function initMap() {
         styles: mapStyle
     });
 
+    var userMarker = new google.maps.Marker({
+        map: map,
+        position: map.getCenter(),
+        icon: {
+            url: 'images/usermarker.png',
+            scaledSize: new google.maps.Size(20, 20)
+        },
+        optimized: false
+    });
+
     // Displays all of the markers when page loads, no category filter
     getXMLData('getData.php?cat=""', map);
 
     // Get all of the categories and put them into an array
     getCategories('getCategories.php');
-
-    // Get user location
-    /*navigator.geolocation.getCurrentPosition(function(location) {
-        userLoc = new google.maps.LatLng(
-            location.coords.latitude, 
-            location.coords.longitude
-        );
-        map.setCenter(userLoc);
-        clearMarkers();
-        getXMLData('getData.php?cat=""', map);
-        getCategories('getCategories.php');
-    });*/
 
     var filtersPanel = document.getElementById('filtersPanel');
     var textField1 = document.getElementById('userInput');
@@ -62,6 +60,7 @@ function initMap() {
         newCenter = new google.maps.LatLng(latitude, longitude);
 
         map.setCenter(newCenter);
+        userMarker.setPosition(newCenter);
         loc = newCenter;
 
         clearMarkers();
@@ -216,7 +215,7 @@ function getXMLData(url, map) {
                     markersArray.push(marker);
                 }
             });
-            
+
             // shows number of results/markers
             var numMarkers = markersArray.length;
             document.getElementById("numResults").innerHTML = numMarkers + " results";
