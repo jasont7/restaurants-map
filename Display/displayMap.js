@@ -3,8 +3,8 @@ var markersArray = [];
 var categories = [];
 var cat = '"' + '"';
 
-var cities = {"victoria": {lat: 48.428421, lng: -123.365644}};
-var city = "victoria";
+var cities = {"Victoria": {lat: 48.428421, lng: -123.365644}};
+var city = "Victoria";
 
 var radius = 1000;
 var defaultZoom = 16;
@@ -37,6 +37,7 @@ function initMap() {
 
     var filtersPanel = document.getElementById('filtersPanel');
     var textField1 = document.getElementById('userInput');
+    var textField2 = document.getElementById('cityInput');
     var slider = document.getElementById("distRange");
     var rangeSize = document.getElementById("rangeSize");
 
@@ -53,6 +54,25 @@ function initMap() {
     textField1.oninput = useValue;
     textField1.addEventListener("awesomplete-selectcomplete", useValue);
 
+    // Clears and displays new markers in the city the user typed
+    function changeCity() {
+        newCity = textField2.value;
+        latitude = cities[newCity].lat;
+        longitude = cities[newCity].lng;
+        newCenter = new google.maps.LatLng(latitude, longitude);
+
+        map.setCenter(newCenter);
+        userMarker.setPosition(newCenter);
+        loc = newCenter;
+
+        clearMarkers();
+        getXMLData('getData.php?cat='+cat, map);
+    }
+
+    // City search
+    textField2.onchange = changeCity;
+    textField2.addEventListener("awesomplete-selectcomplete", changeCity);
+
     // On map click
     google.maps.event.addListener(map, 'click', function(event) {
         latitude = event.latLng.lat();
@@ -64,7 +84,6 @@ function initMap() {
         loc = newCenter;
 
         clearMarkers();
-        console.log(cat);
         getXMLData('getData.php?cat='+cat, map);
     });
 
@@ -106,8 +125,14 @@ function initMap() {
     }
 
 
-    var autocomplete = new Awesomplete(textField1, {
+    var autocomplete = new Awesomplete(textField1, { // Category
         list: categories,
+        filter: Awesomplete.FILTER_STARTSWITH,
+        minChars: 1
+    });
+
+    var autocomplete = new Awesomplete(textField2, { // City
+        list: Object.keys(cities),
         filter: Awesomplete.FILTER_STARTSWITH,
         minChars: 1
     });

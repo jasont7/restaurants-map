@@ -7,9 +7,11 @@
 </head>
 <body>
     <div id="map"></div>
+    
     <div id="filtersPanel">
         <div id="numResults"></div>
         <input type="text" id="userInput"></input>
+        <input type="text" id="cityInput"></input>
         <input type="range" min="1" max="7" value="4" id="distRange">
         <div id="rangeSize"></div>
     </div>
