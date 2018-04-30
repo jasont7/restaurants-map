@@ -3,7 +3,8 @@ var markersArray = [];
 var categories = [];
 var cat = '"' + '"';
 
-var cities = {"Victoria": {lat: 48.428421, lng: -123.365644}};
+var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
+              "Oak Bay": {lat: 48.426141, lng: -123.316516}};
 var city = "Victoria";
 
 var radius = 1000;
@@ -19,6 +20,7 @@ function initMap() {
         styles: mapStyle
     });
 
+    //Put marker at user location or where they've clicked
     var userMarker = new google.maps.Marker({
         map: map,
         position: map.getCenter(),
@@ -91,33 +93,25 @@ function initMap() {
     rangeSize.innerHTML = "1km";
     slider.oninput = function() {
         if (parseInt(this.value) == 1) {
-            rangeSize.innerHTML = "100m";
-            radius = 100;
-            map.setZoom(defaultZoom+3);
-        } else if (parseInt(this.value) == 2) {
             rangeSize.innerHTML = "250m";
             radius = 250;
             map.setZoom(defaultZoom+2);
-        } else if (parseInt(this.value) == 3) {
+        } else if (parseInt(this.value) == 2) {
             rangeSize.innerHTML = "500m";
             radius = 500;
             map.setZoom(defaultZoom+1);
-        } else if (parseInt(this.value) == 4) {
+        } else if (parseInt(this.value) == 3) {
             rangeSize.innerHTML = "1km";
             radius = 1000;
             map.setZoom(defaultZoom);
-        } else if (parseInt(this.value) == 5) {
+        } else if (parseInt(this.value) == 4) {
             rangeSize.innerHTML = "2km";
             radius = 2000;
             map.setZoom(defaultZoom-1);
-        } else if (parseInt(this.value) == 6) {
+        } else if (parseInt(this.value) == 5) {
             rangeSize.innerHTML = "5km";
             radius = 5000;
             map.setZoom(defaultZoom-2);
-        } else if (parseInt(this.value) == 7) {
-            rangeSize.innerHTML = "10km";
-            radius = 10000;
-            map.setZoom(defaultZoom-3);
         }
 
         clearMarkers();
