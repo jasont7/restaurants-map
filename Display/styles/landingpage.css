@@ -4,11 +4,11 @@
     }
 
     25% {
-        background-color:#4F7008
+        background-color: #4F7008
     }
 
     50% {
-        background-color:  #F18F01
+        background-color: #F18F01
     }
 
     75% {
@@ -16,47 +16,41 @@
     }
 
     100% {
-        background-color: #241F3A
+        background-color: #0B5091
     }
 }
 
 body {
-    animation: bgcolor 20s infinite;
+    animation: bgcolor 15s infinite;
     animation-direction: alternate;
 }
 
 #logo {
-	width: 450px;
+	width: 350px;
+	padding-top: 65px;
+	padding-bottom: 40px;
 }
 
 #logodiv {
-	margin-top: 40px;
-	text-align:center;
-}
-#text {
-	margin-left: 500px;
-	margin-top: 150px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    color: #fff;
+	text-align: center;
 }
 
+/*Vertical Sliding Text*/
 .sentence{
-     color: white;
-     font-size: 30px;
-     margin-left: 535px;
-	 font-family: 'Montserrat', sans-serif;
+	color: #fff;
+	font-size: 35px;
+	margin-left: 450px;
+	font-family: 'Montserrat', sans-serif;
 }
 .slidingVertical{
 	display: inline;
-	text-indent: 8px;
-	color:black;
+	text-indent: 18px;
 }
 .slidingVertical span{
 	animation: topToBottom 12.5s linear infinite 0s;
 	-ms-animation: topToBottom 12.5s linear infinite 0s;
 	-webkit-animation: topToBottom 12.5s linear infinite 0s;
-	color: black;
+	color: #000;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
@@ -111,64 +105,62 @@ body {
 	100% { opacity: 0; }
 }
 
-/*Horizontal Sliding*/
-.slidingHorizontal{
-	display: inline;
-	text-indent: 8px;
+/*Search Form*/
+#search {
+	text-align: center;
 }
-.slidingHorizontal span{
-	animation: leftToRight 12.5s linear infinite 0s;
-	-ms-animation: leftToRight 12.5s linear infinite 0s;
-	-webkit-animation: leftToRight 12.5s linear infinite 0s;
-	color: #00abe9;
-	opacity: 0;
-	overflow: hidden;
+
+#categoryInput {
+	background: rgba(255, 255, 255, 0.85);
+	padding:10px;
+	border-radius:5px 0 0 5px;
+	-moz-border-radius:5px 0 0 5px;
+	-webkit-border-radius:5px 0 0 5px;
+	-o-border-radius:5px 0 0 5px;
+	border:0 none;
+	width: 355px;
+	height: 30px;
+	outline:none;
+	margin-top:30px;
+	text-indent: 32px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+#cityInput {
+	background: rgba(255, 255, 255, 0.85);
+	padding:10px;
+	border:0 none;
+	width: 355px;
+	height: 30px;
+	outline:none;
+	text-indent: 32px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+#searchBtn {
+	background:#fff;
+	color:#000;
+	font-family: 'Montserrat', sans-serif;
+	padding: 10px 20px;
+	border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	-webkit-border-radius:0 5px 5px 0;
+	-o-border-radius:0 5px 5px 0;
+	border:0 none;
+	height: 50px;
+	cursor: pointer;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+#search .icon{
 	position: absolute;
+	z-index: 1;
+	margin-top: 47px;
+	margin-left: 12px;
+	color: #aaa;
 }
 
-/* Button styling https://www.w3schools.com/css/css3_buttons.asp */
-.button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: white;
-  border: none;
-  color: black;
-  text-align: center;
-  font-size: 28px;
-  font-family: 'Montserrat', sans-serif;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-#buttonDiv {
-   margin-top: 200px;
-   text-align: center;
+#search input[type="submit"]:hover {
+	background-color: #000;
+	color: #fff;
 }
