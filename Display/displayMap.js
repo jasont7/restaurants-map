@@ -1,12 +1,10 @@
 var map;
 var markersArray = [];
 var categories = [];
-//var cat = '"' + '"';
 var cat = '"' + getQueryVariable("category") + '"';
 
 var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
               "Oak Bay": {lat: 48.426141, lng: -123.316516}};
-//var city = "Victoria";
 var city = getQueryVariable("city");
 
 var radius = 1000;
@@ -34,7 +32,7 @@ function initMap() {
     });
 
     // Displays all of the markers when page loads, no category filter
-    getXMLData('getData.php?cat=""', map);
+    getXMLData('getData.php?cat='+cat, map);
 
     // Get all of the categories and put them into an array
     getCategories('getCategories.php');
@@ -44,6 +42,9 @@ function initMap() {
     var textField2 = document.getElementById('cityInput');
     var slider = document.getElementById("distRange");
     var rangeSize = document.getElementById("rangeSize");
+	
+	textField1.value = cat.replace(/['"]+/g, '');
+	textField2.value = city;
 
     // Clears and displays new markers according the value the user is typing (cat)
     function useValue() {
