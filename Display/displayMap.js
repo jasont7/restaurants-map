@@ -1,11 +1,13 @@
 var map;
 var markersArray = [];
 var categories = [];
-var cat = '"' + '"';
+//var cat = '"' + '"';
+var cat = getQueryVariable("category");
 
 var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
               "Oak Bay": {lat: 48.426141, lng: -123.316516}};
-var city = "Victoria";
+//var city = "Victoria";
+var city = getQueryVariable("city");
 
 var radius = 1000;
 var defaultZoom = 16;
@@ -266,4 +268,18 @@ function getCategories(url) {
     request.open('GET', url);
     request.send();
 
+}
+
+function getQueryVariable(variable) {
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	
+	for (var i=0; i < vars.length; i++) {
+		var pair = vars[i].split("=");
+		if (pair[0] == variable) {
+			pair[1] = pair[1].replace("+", " ");
+			return pair[1];
+		}
+	}
+	return(false);
 }
