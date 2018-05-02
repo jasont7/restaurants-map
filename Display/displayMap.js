@@ -2,7 +2,7 @@ var map;
 var markersArray = [];
 var categories = [];
 //var cat = '"' + '"';
-var cat = getQueryVariable("category");
+var cat = '"' + getQueryVariable("category") + '"';
 
 var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
               "Oak Bay": {lat: 48.426141, lng: -123.316516}};
