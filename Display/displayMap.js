@@ -42,8 +42,16 @@ function initMap() {
     var textField2 = document.getElementById('cityInput');
     var slider = document.getElementById("distRange");
     var rangeSize = document.getElementById("rangeSize");
-	
-	textField1.value = cat.replace(/['"]+/g, '');
+
+    // Put values from landing page into map search bars
+    var tfCat = cat.replace(/['"]+/g, '');
+    for (var i=0; i < tfCat.length; i++) {
+        if (tfCat[i] == "%") {
+            var del = tfCat.substring(i, tfCat.length);
+            tfCat = tfCat.replace(del, "");
+        }
+    }
+    textField1.value = tfCat;
 	textField2.value = city;
 
     // Clears and displays new markers according the value the user is typing (cat)
@@ -51,6 +59,12 @@ function initMap() {
         clearMarkers();
 
         cat = '"'+textField1.value+'"';
+        for (var i=0; i < cat.length; i++) {
+            if (cat[i] == "&" || cat[i] == ",") {
+                var del = cat.substring(i, cat.length-1);
+                cat = cat.replace(del, "");
+            }
+        }
 
         getXMLData('getData.php?cat='+cat, map);
     }
@@ -124,7 +138,7 @@ function initMap() {
 
     var autocomplete = new Awesomplete(textField1, { // Category
         list: categories,
-        filter: Awesomplete.FILTER_STARTSWITH,
+        //filter: Awesomplete.FILTER_STARTSWITH,
         minChars: 1
     });
 
