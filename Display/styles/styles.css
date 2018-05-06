@@ -30,3 +30,43 @@ html, body {
 #distRange {
     padding: 10px;
 }
+
+
+/* info windows */
+#markerInfo {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#markerInfo h3 {
+    font-size: 18px;
+    line-height: 14px;
+    color: #0072ac;
+    margin-top: 8px; 
+    margin-bottom: 18px;
+}
+
+#markerInfo img {
+    display: block;
+    float: left;
+    padding-right: 10px;
+    margin-bottom: 0;
+}
+
+#reviews {
+    display: block;
+    float: left;
+    color: #666;
+}
+
+#categories {
+    line-height: 10px;
+    color: #008bd1;
+    margin-top: 14px;
+    font-size: 14px;
+}
+
+#address {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
