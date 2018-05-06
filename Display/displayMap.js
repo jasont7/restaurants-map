@@ -213,29 +213,14 @@ function getXMLData(url, map) {
                     }
 
                     // creating info-box
-                    var markerInfo = document.createElement('div');
-
-                    var title = document.createElement('strong'); // name
-                    title.textContent = name;
-                    var text0 = document.createElement('text'); // categories
-                    text0.textContent = cat;
-                    var text1 = document.createElement('text'); // address
-                    text1.textContent = address;
-                    var text2 = document.createElement('text'); // reviews
-                    text2.textContent = reviews + " reviews";
-                    var text3 = document.createElement('text'); // rating
-                    text3.textContent = rating + " stars";
-
-                    // appending the text to the info-box
-                    markerInfo.appendChild(title);
-                    markerInfo.appendChild(document.createElement('br'));
-                    markerInfo.appendChild(text0);
-                    markerInfo.appendChild(document.createElement('br'));
-                    markerInfo.appendChild(text1);
-                    markerInfo.appendChild(document.createElement('br'));
-                    markerInfo.appendChild(text2);
-                    markerInfo.appendChild(document.createElement('br'));
-                    markerInfo.appendChild(text3);
+                    var markerInfo = 
+                        '<div id="markerInfo">' +
+                            '<h3>' + name + '</h3>' +
+                            '<img src="images/yelpstars/regular_' + rating + '.png" />' +
+                            '<span id="reviews">' + reviews + " reviews" + '</span><br>' +
+                            '<p id="categories">' + cat + '</p>' +
+                            '<p id="address">' + address + '</p>' +
+                        '</div>';
 
                     // showing and hiding the info window
                     infoWindow = new google.maps.InfoWindow;

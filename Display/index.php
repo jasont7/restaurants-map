@@ -2,8 +2,9 @@
 <html>
 <head>
     <title>FoodAdvisor Map</title>
-    <link rel="stylesheet" href="styles/autocomplete.css" />
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/autocomplete2.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
     <div id="map"></div>
