@@ -24,7 +24,7 @@
         </div>
     </h2>
 
-    <form id="search" action="index.php" method="get">
+    <form id="search" action="index.php" method="get" autocomplete="off">
         <span class="icon"> <i class="fas fa-utensils"> </i> </span>
         <input id="categoryInput" name="category" type="text" placeholder="Pizza, Burgers, Seafood..."/>
 
