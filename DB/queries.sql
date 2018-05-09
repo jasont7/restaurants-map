@@ -21,3 +21,8 @@ SELECT *
 FROM restaurants JOIN categories USING (id)
 WHERE cat LIKE '%Cafes%' AND reviews >= 20
 ORDER BY rating DESC, reviews DESC;
+
+/* Getting the closest restaurants to a coord */
+SELECT *
+FROM restaurants
+ORDER BY ((latitude-48.428421)*(latitude-48.428421)) + ((longitude+123.365644)*(longitude+123.365644)) ASC;
