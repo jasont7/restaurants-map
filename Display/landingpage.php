@@ -6,8 +6,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js" async></script>
-    <link rel="stylesheet" href="styles/autocomplete1.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js"></script>
+    <link rel="stylesheet" href="styles/autocomplete1.css">
 </head>
 <body>
     <div id="logodiv">
@@ -35,20 +35,47 @@
     </form>
 
     <script>
+        var categories = [];
+        getCategories('getCategories.php');
+
         var userCat = document.getElementById('categoryInput');
         var userCity = document.getElementById('cityInput');
 
-        /*var autoCat = new Awesomplete(userCat, {
-                list: categories , //LOCATE
-                filter: Awesomplete.FILTER_STARTSWITH,
-                minChars: 0
-        }); */
-
-        var autoCity = new Awesomplete(userCity, {
-            list: ["Victoria, BC", "Oak Bay, BC"],
+        var autoCat = new Awesomplete(userCat, {
+            list: categories,
             filter: Awesomplete.FILTER_STARTSWITH,
             minChars: 0
         });
+
+        var autoCity = new Awesomplete(userCity, {
+            list: ["Victoria", "Oak Bay"],
+            filter: Awesomplete.FILTER_STARTSWITH,
+            minChars: 0
+        });
+
+        function getCategories(url) {
+            // Using AJAX to get the XML data from the 'getCategories.php' file to make the autocomplete search feature
+            // (very similar to the getXMLData function)
+
+            var request = new XMLHttpRequest;
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {
+
+                    // using the info from the XML
+                    var xml = request.responseXML;
+                    var xmlCats = xml.documentElement.getElementsByTagName('category');
+
+                    for (i=0; i < xmlCats.length; i++) {
+                        var cat = xmlCats[i].getAttribute('cat');
+                        categories.push(cat);
+                    }
+                }
+            }
+            request.open('GET', url);
+            request.send();
+
+        }
     </script>
 
 </body>
