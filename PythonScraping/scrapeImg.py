@@ -26,7 +26,6 @@ def scrapePage(quote_page):
             # get 'more info' link
             for l in elem.select(".biz-name.js-analytics-click"):
                 element['link'] = "https://www.yelp.com" + l['href']
-                break
             
             print(element)
             
