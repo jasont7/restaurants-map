@@ -30,6 +30,7 @@ function initMap() {
         },
         optimized: false
     });
+	
 
     // Displays all of the markers when page loads, no category filter
     getXMLData('getData.php?cat='+cat, map);
@@ -183,7 +184,8 @@ function getXMLData(url, map) {
                 var address = markerElem.getAttribute('address');
                 var reviews = markerElem.getAttribute('reviews');
                 var rating = markerElem.getAttribute('rating');
-
+				var link = markerElem.getAttribute('link');
+				var image = markerElem.getAttribute('image');
                 var coord = new google.maps.LatLng(
                     parseFloat(markerElem.getAttribute('lat')),
                     parseFloat(markerElem.getAttribute('lng'))
@@ -215,11 +217,14 @@ function getXMLData(url, map) {
                     // creating info-box
                     var markerInfo = 
                         '<div id="markerInfo">' +
-                            '<h3>' + name + '</h3>' +
+							'<span id ="otherStuff">' + 
+                            '<h3> <a href ="' + link + '">' + name + '</a> </h3>' +
                             '<img src="images/yelpstars/regular_' + rating + '.png" />' +
                             '<span id="reviews">' + reviews + " reviews" + '</span><br>' +
                             '<p id="categories">' + cat + '</p>' +
                             '<p id="address">' + address + '</p>' +
+							'</span>' +
+							'<img id="rImage" src ="' + image + '"/>' + 
                         '</div>';
 
                     // showing and hiding the info window
@@ -232,6 +237,12 @@ function getXMLData(url, map) {
                         infoWindow.setContent(markerInfo);
                         infoWindow.open(map, marker);
                     });
+					
+					 marker.addListener('click', function() {
+						map.setZoom(18);
+						map.setCenter(marker.getPosition());
+					});
+		
 
                     markersArray.push(marker);
                 }
