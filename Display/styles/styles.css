@@ -37,12 +37,13 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
-#markerInfo h3 {
+#markerInfo a {
     font-size: 18px;
     line-height: 14px;
     color: #0072ac;
     margin-top: 8px; 
     margin-bottom: 18px;
+	text-decoration: none;
 }
 
 #markerInfo img {
@@ -69,4 +70,15 @@ html, body {
     line-height: 24px;
     font-size: 14px;
     margin-bottom: 0;
+}
+
+#rImage {
+	width: 90px;
+	height: 90px;
+	padding-left: 10px;
+	margin-top: 12px;
+}
+
+#otherStuff {
+	float: left;
 }
