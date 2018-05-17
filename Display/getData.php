@@ -19,6 +19,7 @@ $query = "SELECT DISTINCT restaurants.*, c2.cat
           FROM restaurants JOIN categories c1 USING(id) JOIN categories c2 USING(id) 
           WHERE c1.cat LIKE '%'$cat'%'";
 $result = mysqli_query($conn, $query);
+
 if (!$result) {
     die('Invalid query: ' . mysql_error());
 }
@@ -57,6 +58,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         echo 'address="' . parseToXML($row['address']) . '" ';
         echo 'reviews="' . parseToXML($row['reviews']) . '" ';
         echo 'rating="' . parseToXML($row['rating']) . '" ';
+        echo 'image="' . parseToXML($row['image']) . '" ';
+        echo 'link="' . parseToXML($row['link']) . '" ';
         echo 'lat="' . $row['latitude'] . '" ';
         echo 'lng="' . $row['longitude'] . '" ';
         $cat_str = "$new_cat";
