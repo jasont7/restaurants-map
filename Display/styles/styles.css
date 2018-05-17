@@ -37,16 +37,21 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
-#markerInfo a {
-    font-size: 18px;
-    line-height: 14px;
-    color: #0072ac;
-    margin-top: 8px; 
-    margin-bottom: 18px;
-	text-decoration: none;
+#main {
+    float: left;
 }
 
-#markerInfo img {
+#markerInfo a {
+    font-size: 21px;
+    line-height: 14px;
+    color: #0072ac;
+    text-decoration: none;
+}
+#markerInfo a:hover {
+    color: #004f77;
+}
+
+#stars {
     display: block;
     float: left;
     padding-right: 10px;
@@ -72,13 +77,9 @@ html, body {
     margin-bottom: 0;
 }
 
-#rImage {
-	width: 90px;
-	height: 90px;
-	padding-left: 10px;
-	margin-top: 12px;
-}
-
-#otherStuff {
-	float: left;
+#image {
+    width: 90px;
+    margin-top: 25px;
+    margin-left: 25px;
+    border-radius: 6%;
 }
