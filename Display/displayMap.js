@@ -107,26 +107,26 @@ function initMap() {
     });
 
     // Distance range slider
-    rangeSize.innerHTML = "1km";
+    rangeSize.innerHTML = "Within 1km";
     slider.oninput = function() {
         if (parseInt(this.value) == 1) {
-            rangeSize.innerHTML = "250m";
+            rangeSize.innerHTML = "Within 250m";
             radius = 250;
             map.setZoom(defaultZoom+2);
         } else if (parseInt(this.value) == 2) {
-            rangeSize.innerHTML = "500m";
+            rangeSize.innerHTML = "Within 500m";
             radius = 500;
             map.setZoom(defaultZoom+1);
         } else if (parseInt(this.value) == 3) {
-            rangeSize.innerHTML = "1km";
+            rangeSize.innerHTML = "Within 1km";
             radius = 1000;
             map.setZoom(defaultZoom);
         } else if (parseInt(this.value) == 4) {
-            rangeSize.innerHTML = "2km";
+            rangeSize.innerHTML = "Within 2km";
             radius = 2000;
             map.setZoom(defaultZoom-1);
         } else if (parseInt(this.value) == 5) {
-            rangeSize.innerHTML = "5km";
+            rangeSize.innerHTML = "Within 5km";
             radius = 5000;
             map.setZoom(defaultZoom-2);
         }
@@ -218,13 +218,13 @@ function getXMLData(url, map) {
                     var markerInfo = 
                         '<div id="markerInfo">' +
                             '<span id="main">' +
-                                '<h3><a href="' + link + '">' + name + '</a></h3>' +
+                                '<h3><a href="' + link + '" target="_blank">' + name + '</a></h3>' +
                                 '<img id="stars" src="images/yelpstars/regular_' + rating + '.png" />' +
                                 '<span id="reviews">' + reviews + " reviews" + '</span><br>' +
                                 '<p id="categories">' + cat + '</p>' +
                                 '<p id="address">' + address + '</p>' +
                             '</span>' +
-                            '<img id="image" src="' + image + '" />' +
+                            '<a href="' + link + '" target="_blank"> <img id="image" src="' + image + '" /> </a>' +
                         '</div>';
 
                     // showing and hiding the info window
