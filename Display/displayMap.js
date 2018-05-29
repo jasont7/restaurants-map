@@ -206,9 +206,11 @@ function getXMLData(url, map) {
                     });
 
                     // change the opacity of the markers according to rating
-                    if (rating >= 4) {
-                        marker.setIcon({url:'images/marker-top.png', scaledSize: new google.maps.Size(20, 20)});
-                    } else if (rating < 4 && rating >= 3) {
+                    if (rating >= 4 && reviews > 150) {
+                        marker.setIcon({url:'images/fire-emoji.png', scaledSize: new google.maps.Size(20, 20)});
+                    } else if (rating >= 4) {
+						marker.setIcon({url:'images/marker-top.png', scaledSize: new google.maps.Size(20, 20)});
+					} else if (rating < 4 && rating >= 3) {
                         marker.setIcon({url:'images/marker-mid.png', scaledSize: new google.maps.Size(20, 20)});
                     } else if (rating < 3) {
                         marker.setIcon({url:'images/marker-low.png', scaledSize: new google.maps.Size(20, 20)});
