@@ -7,25 +7,75 @@ html, body {
     padding: 0;
 }
 #filtersPanel {
-    height: 175px;
-    width: 175px;
-    background-color: #fff;
-    padding: 20px;
-    margin: 100px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 0 30px 5px #999;
+    height: 200px;
+    width: 500px;
+    margin-left: 125px;
+    margin-top: 50px;
 }
 #userInput {
-    display: block;
-    margin: 0 auto;
+    background: rgb(255, 255, 255);
+	padding:10px;
+    border:0 none;
+    margin-bottom: 10px;
+    margin-left: 10px;
+	width: 280px;
+    height: 30px;
+	outline:none;
+    text-indent: 32px;
+    border-radius: 2px;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+#category-icon{
+	position: absolute;
+	z-index: 1;
+	margin-top: 19px;
+	margin-left: 25px;
+	color: #aaa;
+}
+
+/* Menu Button */
+.menuButton {
+    content:url('../images/menu-icon.png');
+    height: 32px;
+    width: 32px;
+    float: left;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 9px;
+    border-radius: 2px;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+.change {
+    content:url('../images/menu-down-icon.png');
+}
+
+/* Menu */
+#menu {
+    background-color: #fff;
+    width: 358px;
+    height: 150px;
+    text-align: center;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
 #cityInput {
-    display: block;
-    margin: 10px auto;
+    background: rgb(255, 255, 255);
+    padding:10px;
+    margin-top: 10px;
+    border:0 none;
+    margin-bottom: 10px;
+	width: 320px;
+	height: 30px;
+	outline:none;
+    text-indent: 32px;
+    border-radius: 2px;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 }
-#numResults {
-    padding: 10px;
+#city-icon{
+	position: absolute;
+	z-index: 1;
+	margin-top: 30px;
+	margin-left: 14px;
+	color: #aaa;
 }
 #distRange {
     padding: 10px;

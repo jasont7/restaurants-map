@@ -138,14 +138,14 @@ function initMap() {
 
     var autocomplete = new Awesomplete(textField1, { // Category
         list: categories,
-        //filter: Awesomplete.FILTER_STARTSWITH,
-        minChars: 1
+        filter: Awesomplete.FILTER_STARTSWITH,
+        minChars: 0
     });
 
     var autocomplete = new Awesomplete(textField2, { // City
         list: Object.keys(cities),
         filter: Awesomplete.FILTER_STARTSWITH,
-        minChars: 1
+        minChars: 0
     });
 
     // Displays the filters panel in the top-left of the screen
@@ -199,7 +199,7 @@ function getXMLData(url, map) {
                         map: map,
                         position: coord,
                         icon: {
-                            url: 'images/markericon.png',
+                            url: 'images/markericon3.png',
                             scaledSize: new google.maps.Size(20, 20)
                         },
                         optimized: false
@@ -207,11 +207,11 @@ function getXMLData(url, map) {
 
                     // change the opacity of the markers according to rating
                     if (rating >= 4) {
-                        marker.setOpacity(1.0);
-                    } else if (rating >= 2.5 && rating < 4) {
-                        marker.setOpacity(0.8);
-                    } else if (rating < 2.5) {
-                        marker.setOpacity(0.6);
+                        marker.setIcon({url:'images/marker-top.png', scaledSize: new google.maps.Size(20, 20)});
+                    } else if (rating < 4 && rating >= 3) {
+                        marker.setIcon({url:'images/marker-mid.png', scaledSize: new google.maps.Size(20, 20)});
+                    } else if (rating < 3) {
+                        marker.setIcon({url:'images/marker-low.png', scaledSize: new google.maps.Size(20, 20)});
                     }
 
                     // creating info-box
@@ -240,11 +240,8 @@ function getXMLData(url, map) {
 
                     markersArray.push(marker);
                 }
-            });
 
-            // shows number of results/markers
-            var numMarkers = markersArray.length;
-            document.getElementById("numResults").innerHTML = numMarkers + " results";
+            });
         }
     };
     request.send(); // send the request
@@ -287,4 +284,14 @@ function getQueryVariable(variable) {
 		}
 	}
 	return(false);
+}
+
+function menuButton(x) {
+    x.classList.toggle("change");
+    var menu = document.getElementById("menu");
+    if (menu.style.display === "none") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
 }

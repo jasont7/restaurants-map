@@ -5,21 +5,30 @@
     <link rel="stylesheet" href="styles/autocomplete2.css" />
     <link rel="stylesheet" href="styles/styles.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
     <div id="map"></div>
     
     <div id="filtersPanel">
-        <div id="numResults"></div>
-        <input type="text" id="userInput"></input>
-        <input type="text" id="cityInput"></input>
-        <input type="range" min="1" max="5" value="3" id="distRange">
-        <div id="rangeSize"></div>
+        <div class="menuButton" onclick="menuButton(this)"></div>
+
+        <span class="icon" id="category-icon"> <i class="fas fa-utensils"> </i> </span>
+        <input type="text" id="userInput" placeholder="Pizza, Burgers, Seafood..."></input>
+
+        <div id="menu" style="display: none;">
+            <span class="icon" id="city-icon"> <i class="fas fa-location-arrow"> </i> </span>
+            <input type="text" id="cityInput" placeholder="City"></input>
+
+            <input type="range" min="1" max="5" value="3" id="distRange">
+            <div id="rangeSize"></div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js" async></script>
     <script src="displayMap.js?random=<?php echo uniqid(); ?>"></script>
     <script src="styles/mapStyle.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCtizU5211x11kL5k1LBvXbpZwNn99u0pc&callback=initMap" async defer></script>
+    <script src="images/markercluster/markerclusterer.js"></script>
 </body>
 </html>
