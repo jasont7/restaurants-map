@@ -7,8 +7,8 @@ html, body {
     padding: 0;
 }
 #filtersPanel {
-    height: 200px;
-    width: 500px;
+    height: 60px;
+    width: 365px;
     margin-left: 125px;
     margin-top: 50px;
 }
