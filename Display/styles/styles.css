@@ -9,8 +9,8 @@ html, body {
 #filtersPanel {
     height: 60px;
     width: 365px;
-    margin-left: 125px;
-    margin-top: 50px;
+    margin-left: 80px;
+    margin-top: 40px;
 }
 #userInput {
     background: rgb(255, 255, 255);
