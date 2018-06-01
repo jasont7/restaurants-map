@@ -25,8 +25,8 @@ function initMap() {
         map: map,
         position: map.getCenter(),
         icon: {
-            url: 'images/usermarker.png',
-            scaledSize: new google.maps.Size(20, 20)
+            url: 'images/usermarker2.png',
+            scaledSize: new google.maps.Size(30, 30)
         },
         optimized: false
     });
