@@ -26,3 +26,8 @@ ORDER BY rating DESC, reviews DESC;
 SELECT *
 FROM restaurants
 ORDER BY ((latitude-48.428421)*(latitude-48.428421)) + ((longitude+123.365644)*(longitude+123.365644)) ASC;
+
+/* Deleting duplicate restaurant rows */
+DELETE t1 
+FROM restaurants t1, restaurants t2 
+WHERE t1.id < t2.id AND t1.latitude = t2.latitude AND t1.name = t2.name;
