@@ -3,11 +3,18 @@ SELECT *
 FROM restaurants
 ORDER BY reviews DESC;
 
-/* Finding the best types of restraunts */
+/* Finding the best categories of restraunts */
 SELECT cat, count(id)
 FROM categories
 GROUP BY cat
 ORDER BY count(id) DESC;
+
+/* Show all restaurants from a category, and also
+show any other categories that those restaurants have -
+in a seperate row (used for getData.php) */
+SELECT DISTINCT restaurants.*, c2.cat 
+FROM restaurants JOIN categories c1 USING(id) JOIN categories c2 USING(id) 
+WHERE c1.cat LIKE '%Pizza%';
 
 /* Finding the best restaurants from all categories */
 SELECT *
