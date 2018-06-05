@@ -29,6 +29,5 @@
     <script src="displayMap.js?random=<?php echo uniqid(); ?>"></script>
     <script src="styles/mapStyle.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&key=AIzaSyCtizU5211x11kL5k1LBvXbpZwNn99u0pc&callback=initMap" async defer></script>
-    <script src="images/markercluster/markerclusterer.js"></script>
 </body>
 </html>

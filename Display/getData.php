@@ -13,10 +13,23 @@ if (!$db) {
 
 
 $cat = $_GET['cat'];
+$city = $_GET['city'];
+
+// Select the tables according to the city
+$restaurantsTable;
+$categoriesTable;
+
+if ($city != "Victoria") {
+    $restaurantsTable = "restaurants$city";
+    $categoriesTable = "categories$city";
+} else {
+    $restaurantsTable = "restaurants";
+    $categoriesTable = "categories";
+}
 
 // Select all the rows in the restaurants table
-$query = "SELECT DISTINCT restaurants.*, c2.cat 
-          FROM restaurants JOIN categories c1 USING(id) JOIN categories c2 USING(id) 
+$query = "SELECT DISTINCT $restaurantsTable.*, c2.cat 
+          FROM $restaurantsTable JOIN $categoriesTable c1 USING(id) JOIN $categoriesTable c2 USING(id) 
           WHERE c1.cat LIKE '%'$cat'%'";
 $result = mysqli_query($conn, $query);
 

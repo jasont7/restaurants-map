@@ -4,7 +4,8 @@ var categories = [];
 var cat = '"' + getQueryVariable("category") + '"';
 
 var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
-              "Oak Bay": {lat: 48.426141, lng: -123.316516}};
+              "Oak Bay": {lat: 48.426141, lng: -123.316516},
+              "Vancouver": {lat: 49.282729, lng: -123.120738}};
 var city = getQueryVariable("city");
 
 var radius = 1000;
@@ -32,7 +33,7 @@ function initMap() {
     });
 
     // Displays all of the markers when page loads, no category filter
-    getXMLData('getData.php?cat='+cat, map);
+    getXMLData('getData.php?cat='+cat+'&city='+city, map);
 
     // Get all of the categories and put them into an array
     getCategories('getCategories.php');
@@ -66,7 +67,7 @@ function initMap() {
             }
         }
 
-        getXMLData('getData.php?cat='+cat, map);
+        getXMLData('getData.php?cat='+cat+'&city='+city, map);
     }
 
     // Category search
@@ -75,17 +76,16 @@ function initMap() {
 
     // Clears and displays new markers in the city the user typed
     function changeCity() {
-        newCity = textField2.value;
-        latitude = cities[newCity].lat;
-        longitude = cities[newCity].lng;
+        city = textField2.value;
+        latitude = cities[city].lat;
+        longitude = cities[city].lng;
         newCenter = new google.maps.LatLng(latitude, longitude);
 
         map.setCenter(newCenter);
         userMarker.setPosition(newCenter);
-        loc = newCenter;
 
         clearMarkers();
-        getXMLData('getData.php?cat='+cat, map);
+        getXMLData('getData.php?cat='+cat+'&city='+city, map);
     }
 
     // City search
@@ -103,7 +103,7 @@ function initMap() {
         loc = newCenter;
 
         clearMarkers();
-        getXMLData('getData.php?cat='+cat, map);
+        getXMLData('getData.php?cat='+cat+'&city='+city, map);
     });
 
     // Distance range slider
@@ -132,7 +132,7 @@ function initMap() {
         }
 
         clearMarkers();
-        getXMLData('getData.php?cat='+cat, map);
+        getXMLData('getData.php?cat='+cat+'&city='+city, map);
     }
 
 
@@ -198,22 +198,18 @@ function getXMLData(url, map) {
                     var marker = new google.maps.Marker({
                         map: map,
                         position: coord,
-                        icon: {
-                            url: 'images/markericon3.png',
-                            scaledSize: new google.maps.Size(20, 20)
-                        },
                         optimized: false
                     });
 
                     // change the opacity of the markers according to rating
                     if (rating >= 4 && reviews >= 100) {
-                        marker.setIcon({url:'images/marker-fire.png', scaledSize: new google.maps.Size(20, 20)});
+                        marker.setIcon({url:'images/marker-fire.png', scaledSize: new google.maps.Size(26, 26)});
                     } else if (rating >= 4) {
-                        marker.setIcon({url:'images/marker-top.png', scaledSize: new google.maps.Size(20, 20)});
+                        marker.setIcon({url:'images/marker-top.png', scaledSize: new google.maps.Size(23, 23)});
                     } else if (rating < 4 && rating >= 3) {
-                        marker.setIcon({url:'images/marker-mid.png', scaledSize: new google.maps.Size(20, 20)});
+                        marker.setIcon({url:'images/marker-mid.png', scaledSize: new google.maps.Size(23, 23)});
                     } else if (rating < 3) {
-                        marker.setIcon({url:'images/marker-low.png', scaledSize: new google.maps.Size(20, 20)});
+                        marker.setIcon({url:'images/marker-low.png', scaledSize: new google.maps.Size(23, 23)});
                     }
 
                     // creating info-box
