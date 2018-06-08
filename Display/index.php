@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
-<body>
+<body onload = "myFunction()">
+
     <div id="map"></div>
     
     <div id="filtersPanel">
@@ -20,11 +21,24 @@
             <span class="icon" id="city-icon"> <i class="fas fa-location-arrow"> </i> </span>
             <input type="text" id="cityInput" placeholder="City"></input>
 
-            <input type="range" min="1" max="5" value="3" id="distRange" class="slider">
+            <input type="range" min="1" max="5" value="3" id="distRange">
             <div id="rangeSize"></div>
         </div>
+		<div onclick = "hideDiv();" class="popup"> 
+  <span class="popuptext" id="myPopup"> Click anywhere to explore! </span>
+</div>
     </div>
+<script> 
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}; 
 
+function hideDiv() {
+	var box = document.getElementById("myPopup");
+	box.style.display = "none";
+}
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.2/awesomplete.js" async></script>
     <script src="displayMap.js?random=<?php echo uniqid(); ?>"></script>
     <script src="styles/mapStyle.js"></script>
