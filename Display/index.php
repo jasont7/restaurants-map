@@ -20,7 +20,7 @@
             <span class="icon" id="city-icon"> <i class="fas fa-location-arrow"> </i> </span>
             <input type="text" id="cityInput" placeholder="City"></input>
 
-            <input type="range" min="1" max="5" value="3" id="distRange">
+            <input type="range" min="1" max="5" value="3" id="distRange" class="slider">
             <div id="rangeSize"></div>
         </div>
     </div>
