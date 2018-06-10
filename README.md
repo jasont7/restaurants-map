@@ -1,4 +1,4 @@
-## View live at https://www.foodadvisor.tk
+## View live at http://www.foodadvisor.tk
 
 ## Links:
 
