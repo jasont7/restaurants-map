@@ -43,6 +43,8 @@ function initMap() {
     var textField2 = document.getElementById('cityInput');
     var slider = document.getElementById("distRange");
     var rangeSize = document.getElementById("rangeSize");
+    var ratingSlider = document.getElementById("ratingRange");
+    var minRating = document.getElementById("minRating");
 
     // Put values from landing page into map search bars
     var tfCat = cat.replace(/['"]+/g, '');
@@ -135,6 +137,33 @@ function initMap() {
         getXMLData('getData.php?cat='+cat+'&city='+city, map);
     }
 
+    // Minimum rating slider
+    minRating.innerHTML = "Mid+";
+    minStars = 3;
+    minReviews = 0;
+    ratingSlider.oninput = function() {
+        if (parseInt(this.value) == 1) {
+            minRating.innerHTML = "Low+";
+            minStars = 0;
+            minReviews = 0;
+        } else if (parseInt(this.value) == 2) {
+            minRating.innerHTML = "Mid+";
+            minStars = 3;
+            minReviews = 0;
+        } else if (parseInt(this.value) == 3) {
+            minRating.innerHTML = "High+";
+            minStars = 4;
+            minReviews = 0;
+        } else if (parseInt(this.value) == 4) {
+            minRating.innerHTML = "Hot";
+            minStars = 4;
+            minReviews = 100;
+        }
+
+        clearMarkers();
+        getXMLData('getData.php?cat='+cat+'&city='+city, map);
+    }
+
 
     var autocomplete = new Awesomplete(textField1, { // Category
         list: categories,
@@ -192,7 +221,7 @@ function getXMLData(url, map) {
                 );
                 var distanceToCenter = google.maps.geometry.spherical.computeDistanceBetween(coord, map.getCenter());
     
-                if (distanceToCenter <= radius) {
+                if (distanceToCenter <= radius && rating >= minStars && reviews >= minReviews) {
 
                     // create the marker on its according position if it is within radius
                     var marker = new google.maps.Marker({

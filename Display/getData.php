@@ -20,8 +20,8 @@ $restaurantsTable;
 $categoriesTable;
 
 if ($city != "Victoria") {
-    $restaurantsTable = "restaurants$city";
-    $categoriesTable = "categories$city";
+    $restaurantsTable = strtolower("restaurants$city");
+    $categoriesTable = strtolower("categories$city");
 } else {
     $restaurantsTable = "restaurants";
     $categoriesTable = "categories";

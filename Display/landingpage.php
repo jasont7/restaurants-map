@@ -29,7 +29,7 @@
         <input id="categoryInput" name="category" type="text" placeholder="Pizza, Burgers, Seafood..."/>
 
         <span class="icon"> <i class="fas fa-location-arrow"> </i> </span>
-        <input id="cityInput" name="city" type="text" placeholder="City"/>
+        <input id="cityInput" name="city" type="text" placeholder="City" required/>
 
         <input id="searchBtn" class="btnMain" value="Find" type="submit"/>
     </form>
@@ -48,7 +48,7 @@
         });
 
         var autoCity = new Awesomplete(userCity, {
-            list: ["Victoria", "Oak Bay"],
+            list: ["Victoria", "Oak Bay", "Vancouver"],
             filter: Awesomplete.FILTER_STARTSWITH,
             minChars: 0
         });
