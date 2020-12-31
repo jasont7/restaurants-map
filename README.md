@@ -1,6 +1,6 @@
-## View live at http://www.foodadvisor.xyz
+## www.foodadvisor.xyz
 
-## Links:
+## References:
 
 #### [Google Maps JavaScript API - Guides](https://developers.google.com/maps/documentation/javascript/tutorial?authuser=1)
 
