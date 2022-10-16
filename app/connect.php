@@ -1,9 +1,11 @@
 <?php
 
-$servername="localhost";
-$username="root";
-$password="";
-$conn = mysqli_connect($servername, $username, $password);
+$dbhost=getenv('DB_HOST');
+$username=getenv('DB_USER');
+$password=getenv('DB_PASS');
+$schema=getenv('DB_SCHEMA');
+
+$conn = mysqli_connect($host, $username, $password, $schema);
 
 // Check connection
 if (!$conn) {
