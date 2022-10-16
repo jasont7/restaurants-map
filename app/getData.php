@@ -5,12 +5,6 @@ echo "<?xml version='1.0' ?>";
 
 require 'connect.php';
 
-// Select DB
-$db = mysqli_select_db($conn, "webapp1");
-if (!$db) {
-    die ('Can\'t use db : ' . mysql_error());
-}
-
 
 $cat = $_GET['cat'];
 $city = $_GET['city'];

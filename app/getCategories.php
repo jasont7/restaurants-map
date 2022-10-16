@@ -5,11 +5,6 @@ echo "<?xml version='1.0' ?>";
 
 require 'connect.php';
 
-// Select DB
-$db = mysqli_select_db($conn, "webapp1");
-if (!$db) {
-    die ('Can\'t use db : ' . mysql_error());
-}
 
 //Select all of the categories from table
 $queryCategories = "SELECT cat FROM categories GROUP BY cat;";
