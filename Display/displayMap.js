@@ -3,9 +3,11 @@ var markersArray = [];
 var categories = [];
 var cat = '"' + getQueryVariable("category") + '"';
 
-var cities = {"Victoria": {lat: 48.428421, lng: -123.365644},
-              "Oak Bay": {lat: 48.426141, lng: -123.316516},
-              "Vancouver": {lat: 49.282729, lng: -123.120738}};
+var cities = {
+	"Victoria": {lat: 48.428421, lng: -123.365644},
+	"Oak Bay": {lat: 48.426141, lng: -123.316516},
+	"Vancouver": {lat: 49.282729, lng: -123.120738}
+};
 var city = getQueryVariable("city");
 
 var radius = 1000;
@@ -183,7 +185,6 @@ function initMap() {
 
 
 function clearMarkers() {
-
     for (var i = 0; i < markersArray.length; i++) {
         markersArray[i].setMap(null);
     }
@@ -283,7 +284,6 @@ function getCategories(url) {
 
     request.onreadystatechange = function() {
         if (request.readyState == 4) {
-
             // using the info from the XML
             var xml = request.responseXML;
             var xmlCats = xml.documentElement.getElementsByTagName('category');
@@ -316,9 +316,8 @@ function getQueryVariable(variable) {
 function menuButton(x) {
     x.classList.toggle("change");
     var menu = document.getElementById("menu");
-    if (menu.style.display === "none") {
+    if (menu.style.display === "none")
         menu.style.display = "block";
-    } else {
+    else
         menu.style.display = "none";
-    }
 }
